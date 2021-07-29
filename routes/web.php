@@ -62,6 +62,9 @@ Route::fallback(function() {
     echo 'A rota acessada não existe. <a href="'.route('site.index').'">clique aqui</a> para ir para página inicial';
 });
 
+// Exemplo de passagem de parâmetros de Rota para Controller
+Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
+
 /**
  * Com método name() definimos o "nome" da Rota.
  * Esse nome é aplicado apenas na lógica da aplicação portanto utiliza-lo 
@@ -69,9 +72,13 @@ Route::fallback(function() {
  * Dentro da aplicação o nome funciona como um apelido podem substituir a rota absoluta na tag <a href='/'> do html. 
  * Exemplo: href='{{ site.index }}'
  *  */
- Route::get('/', 'PrincipalController@principal')->name('site.index'); 
+Route::get('/', 'PrincipalController@principal')->name('site.index'); 
+
 Route::get('/sobre-nos', 'SobreNosController@sobrenos')->name('site.sobrenos');
+
 Route::get('/contato', 'ContatoController@contato')->name('site.contato');
+Route::post('/contato', 'ContatoController@contato')->name('site.contato');
+
 Route::get('/login', function() {
     return 'Login (view)';
 })->name('site.login');
@@ -87,9 +94,7 @@ Route::prefix('/app')->group(function() {
         return 'Clientes (view)';
     })->name('app.clientes');
 
-    Route::get('/fornecedores', function() { 
-        return 'Fornecedores (view)';
-    })->name('app.fornecedores');
+    Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
 
     Route::get('/produtos', function() {
         return 'Produtos (view)';
