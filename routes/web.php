@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\LogAcessoMiddleware;
+use App\LogAcesso;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,7 +74,7 @@ Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
  * Dentro da aplicação o nome funciona como um apelido podem substituir a rota absoluta na tag <a href='/'> do html. 
  * Exemplo: href='{{ site.index }}'
  *  */
-Route::get('/', 'PrincipalController@principal')->name('site.index'); 
+Route::get('/', 'PrincipalController@principal') ->name('site.index')->middleware('log.acesso');
 
 Route::get('/sobre-nos', 'SobreNosController@sobrenos')->name('site.sobrenos');
 
@@ -89,14 +91,8 @@ Route::get('/login', function() {
  * No método prefix(parâmetro string) da classe Route definimos o prefixo do agrupamento
  * e o método group() recebe uma callback function onde colocamos dentro todas as rotas do Agrupamento.
  *  */
-Route::prefix('/app')->group(function() {
-    Route::get('/clientes', function() {
-        return 'Clientes (view)';
-    })->name('app.clientes');
-
+Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(function() {
+    Route::get('/clientes', function() { return 'Clientes (view)'; })->name('app.clientes');
     Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
-
-    Route::get('/produtos', function() {
-        return 'Produtos (view)';
-    })->name('app.produtos');
+    Route::get('/produtos', function() { return 'Produtos (view)'; })->name('app.produtos');
 });
