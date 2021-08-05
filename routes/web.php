@@ -81,9 +81,9 @@ Route::get('/sobre-nos', 'SobreNosController@sobrenos')->name('site.sobrenos');
 Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 Route::post('/contato', 'ContatoController@salvar')->name('site.contato');
 
-Route::get('/login', function() {
-    return 'Login (view)';
-})->name('site.login');
+// a '?' ao lado do parâmetro o torna opcional
+Route::get('/login/{erro?}', 'LoginController@index')->name('site.login');
+Route::post('/login', 'LoginController@autenticar')->name('site.login');
 
 // Agrupamento de Rotas
 // Rotas abaixo fazem parte da área privada do Sistema precisando de alguma "autenticação" para acessar
@@ -92,7 +92,9 @@ Route::get('/login', function() {
  * e o método group() recebe uma callback function onde colocamos dentro todas as rotas do Agrupamento.
  *  */
 Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(function() {
-    Route::get('/clientes', function() { return 'Clientes (view)'; })->name('app.clientes');
-    Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
-    Route::get('/produtos', function() { return 'Produtos (view)'; })->name('app.produtos');
+    Route::get('/home', 'HomeController@index')->name('app.home');
+    Route::get('/sair', 'LoginController@sair')->name('app.sair');
+    Route::get('/cliente', 'ClienteController@index')->name('app.cliente');
+    Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
+    Route::get('/produto', 'ProdutoController@index')->name('app.produto');
 });
