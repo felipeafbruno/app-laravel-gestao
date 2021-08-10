@@ -9,7 +9,13 @@
             <p>Fornecedor - Listar</p>    
         </div>        
         
-        @component('app.layouts._components.menu', ['classe' => 'fornecedor-menu'])
+        @component('app.layouts._components.menu', [
+                'classe' => 'fornecedor-menu', 
+                'icon_add' => '/img/icon_add.png', 
+                'icon_search' => '/img/icon_search.png',
+                'rota_adicionar' => 'app.fornecedor.adicionar',
+                'rota_consulta' => 'app.fornecedor'
+        ])
         @endcomponent
     
         <div class="informacao-pagina">
@@ -33,7 +39,7 @@
                                 <td>{{ $fornecedor->uf }}</td>
                                 <td>{{ $fornecedor->email }}</td>
                                 <td><a href='{{ route('app.fornecedor.editar', $fornecedor->id) }}'><img alt='Excluir' src='{{asset('/img/icon_edit.png')}}'/></a></td>
-                                <td>Excluir</td>
+                                <td><img alt='Excluir' src='{{asset('/img/icon_delete.png')}}'/></td>
                             </tr>
                         @endforeach
                     </tbody>

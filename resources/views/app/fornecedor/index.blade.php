@@ -9,7 +9,13 @@
             <p>Fornecedor</p>    
         </div>        
         
-        @component('app.layouts._components.menu', ['classe' => 'fornecedor-menu'])
+        @component('app.layouts._components.menu', [
+                'classe' => 'fornecedor-menu', 
+                'icon_add' => '/img/icon_add.png', 
+                'icon_search' => '/img/icon_search.png',
+                'rota_adicionar' => 'app.fornecedor.adicionar',
+                'rota_consulta' => 'app.fornecedor'
+        ])
         @endcomponent
     
         <div class="informacao-pagina">
