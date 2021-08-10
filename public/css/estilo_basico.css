@@ -167,7 +167,7 @@ button:hover {
 
 .informacao-pagina {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .informacao-pagina p{
@@ -193,4 +193,55 @@ button:hover {
 
 .redes-sociais img {
     margin: 0px 15px 0px 15px;
+}
+
+.pagination li{
+    display: inline;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.pagination ul{
+    list-style-type: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #DDD;
+    width: 100%;
+    margin-top: 10px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: powderblue;
+}
+
+.fornecedor-menu {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fornecedor-menu ul {
+    list-style: none;
+    display: flex;
+    margin-right: 76px;
+}
+
+.fornecedor-menu li a {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    color: #000;
+    padding-left: 20px
+}
+
+.fornecedor-menu li a img {
+    padding-right: 6px;
 }
