@@ -16,7 +16,7 @@ class FornecedorController extends Controller
             ->where('site', 'like', '%'.$request->input('site').'%')
             ->where('uf', 'like', '%'.$request->input('uf').'%')
             ->where('email', 'like', '%'.$request->input('email').'%')
-            ->paginate(5); // paginate() permite definir o número de registro por página passado como parametro para o método 
+            ->paginate(2); // paginate() permite definir o número de registro por página passado como parametro para o método 
 
         // dd($fornecedores);
         return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
@@ -37,10 +37,10 @@ class FornecedorController extends Controller
 
             $feedback = [
                 'required' => 'O campo :attribute deve ser preenchido',
-                'nome.min' => 'O campo nome deve ter no mínimo 3 caractéres',
-                'nome.max' => 'O campo nome deve ter no máximo 20 caractéres',
-                'uf.min' => 'O campo uf deve ter no mínimo 3 caractéres',
-                'uf.max' => 'O campo uf deve ter no máximo 20 caractéres',
+                'nome.min' => 'O campo nome deve ter no mínimo 3 caracteres',
+                'nome.max' => 'O campo nome deve ter no máximo 20 caracteres',
+                'uf.min' => 'O campo uf deve ter no mínimo 3 caracteres',
+                'uf.max' => 'O campo uf deve ter no máximo 20 caracteres',
                 'email.email' => 'O campo email não foi preenchido corretamente'
             ];
 
@@ -73,5 +73,11 @@ class FornecedorController extends Controller
         $fornecedor = Fornecedor::find($id);
         
         return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor, 'msg' => $msg]);
+    }
+
+    public function excluir($id) {
+        Fornecedor::find($id)->delete();
+
+        return redirect()->route('app.fornecedor');
     }
 }

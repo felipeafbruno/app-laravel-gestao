@@ -37,7 +37,7 @@ class ContatoController extends Controller
 
     public function salvar(Request $request) {
         $regras = [
-            'nome' => 'required|min:3|max:40|unique:site_contatos', // min -> 3 caractéres e max -> 40 caractéres, unique: site_contatos(tabela)
+            'nome' => 'required|min:3|max:40|unique:site_contatos', // min -> 3 caracteres e max -> 40 caracteres, unique: site_contatos(tabela)
             'telefone' => 'required',
             'email' => 'email',
             'motivo_contatos_id' => 'required',
@@ -46,12 +46,12 @@ class ContatoController extends Controller
 
         $feedback = [
             // mensagens customizadas de acordo com a validação
-            'nome.min' => 'O campo nome precisa deve ter no mínimo 3 caractéres',
-            'nome.max' => 'O campo nome precisa deve ter no máximo 40 caractéres',
+            'nome.min' => 'O campo nome precisa deve ter no mínimo 3 caracteres',
+            'nome.max' => 'O campo nome precisa deve ter no máximo 40 caracteres',
             'nome.unique' => 'O nome informado já está em uso',
             'required' => 'O campo :attribute deve ser preenchido', // :attribute recupera o nome do campo
             'email.email' => 'O email informado não é válido',
-            'mensagem.max' => 'A mensagem deve ter no máximo 2000 caractéres'
+            'mensagem.max' => 'A mensagem deve ter no máximo 2000 caracteres'
 
         ];
         

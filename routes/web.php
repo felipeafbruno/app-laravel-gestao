@@ -99,11 +99,18 @@ Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(funct
     Route::get('/cliente', 'ClienteController@index')->name('app.cliente');
 
     Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
+
     Route::post('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
     Route::get('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
+    
     Route::get('/fornecedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
     Route::post('/fornecedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
+    
     Route::get('/fornecedor/editar/{id}/{msg?}', 'FornecedorController@editar')->name('app.fornecedor.editar');
 
-    Route::get('/produto', 'ProdutoController@index')->name('app.produto');
+    Route::get('/fornecedor/excluir/{id}', 'FornecedorController@excluir')->name('app.fornecedor.excluir');
+
+    // O método resource() do Laravel cria automaticamente 
+    // as rotas associadas a cada action da Controller ProdutoController
+    Route::resource('produto', 'ProdutoController');
 });

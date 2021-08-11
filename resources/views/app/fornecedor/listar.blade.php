@@ -38,8 +38,8 @@
                                 <td>{{ $fornecedor->site }}</td>
                                 <td>{{ $fornecedor->uf }}</td>
                                 <td>{{ $fornecedor->email }}</td>
-                                <td><a href='{{ route('app.fornecedor.editar', $fornecedor->id) }}'><img alt='Excluir' src='{{asset('/img/icon_edit.png')}}'/></a></td>
-                                <td><img alt='Excluir' src='{{asset('/img/icon_delete.png')}}'/></td>
+                                <td><a href='{{ route('app.fornecedor.editar', $fornecedor->id) }}'><img alt='Editar' src='{{asset('/img/icon_edit.png')}}'/></a></td>
+                                <td><a href='{{ route('app.fornecedor.excluir', $fornecedor->id) }}'><img alt='Excluir' src='{{asset('/img/icon_delete.png')}}'/></a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -49,6 +49,18 @@
                 {{-- método appends() anexa os dados da requisição anterior ao link o que 
                     permite manter os dados do filtro de pesquisa --}}
                 {{ $fornecedores->appends($request)->links() }}
+                {{-- <br />
+                {{ $fornecedores->count() }} - Exibe o total de registros por página
+                <br />
+                {{ $fornecedores->total() }} - Exibe o total de registros da consulta
+                <br />
+                {{ $fornecedores->firstItem() }} - Retorna o número do primeiro registro da página
+                <br />
+                {{ $fornecedores->lastItem() }} - Retorna o número do último registro da página 
+                 --}}
+                    
+                <br />
+                Exibindo {{ $fornecedores->count() }} fornecedores de {{ $fornecedores->total() }} (de {{ $fornecedores->firstItem() }} até {{ $fornecedores->lastItem() }})
             </div>
         </div>
     </div>
