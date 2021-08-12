@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Produto;
+use App\ProdutoDetalhe;
 use App\Unidade;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,19 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Produto::paginate(10); // paginate() permite definir o número de registro por página passado como parametro para o método 
+        // Eager Loading with() 
+        $produtos = Produto::with(['produtoDetalhe'])->paginate(10); // paginate() permite definir o número de registro por página passado como parametro para o método 
 
-        // dd($fornecedores);
+        // foreach($produtos as $key => $produto) {
+        //     $produtoDetalhe = ProdutoDetalhe::where('produto_id', '=',$produto->id)->first();
+            
+        //     if(isset($produtoDetalhe)) {
+        //         $produtos[$key]['comprimento'] = $produtoDetalhe->comprimento;
+        //         $produtos[$key]['altura'] = $produtoDetalhe->altura;
+        //         $produtos[$key]['largura'] = $produtoDetalhe->largura;
+        //     }
+        // }
+
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
 
@@ -86,6 +97,7 @@ class ProdutoController extends Controller
     {
         $unidades = Unidade::all();
         return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        // return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
     }
 
     /**
@@ -110,6 +122,7 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-        //
+        $produto->delete();
+        return redirect()->route('produto.index');
     }
 }

@@ -25,6 +25,9 @@
                             <th>Descrição</th>
                             <th>Peso</th>
                             <th>Unidade ID</th>
+                            <th>Comprimento</th>
+                            <th>Altura</th>
+                            <th>Largura</th>
                             <th>Visualizar</th>
                             <th>Editar</th>
                             <th>Excluir</th>
@@ -37,9 +40,21 @@
                                 <td>{{ $produto->descricao }}</td>
                                 <td>{{ $produto->peso }}</td>
                                 <td>{{ $produto->unidade_id }}</td>
+                                <td>{{ $produto->produtoDetalhe->comprimento ?? '' }}</td>
+                                <td>{{ $produto->produtoDetalhe->altura ?? '' }}</td>
+                                <td>{{ $produto->produtoDetalhe->largura ?? '' }}</td>
                                 <td><a href='{{ route('produto.show', ['produto' => $produto->id]) }}'><img alt='Visualizar' src='{{asset('/img/icon_view.png')}}'/></a></td>
                                 <td><a href='{{ route('produto.edit', ['produto' => $produto->id]) }}'><img alt='Editar' src='{{asset('/img/icon_edit.png')}}'/></a></td>
-                                <td><a href=''><img alt='Excluir' src='{{asset('/img/icon_delete.png')}}'/></a></td>
+                                <td>
+                                    <form id='form_{{ $produto->id }}' action='{{ route('produto.destroy', ['produto' => $produto->id]) }}' method='POST'>
+                                        @method('DELETE')
+                                        @csrf
+                                        {{-- <button type='submit'><img alt='Excluir' src='{{asset('/img/icon_delete.png')}}'/></button> --}}
+                                        <a href='#' onclick="document.getElementById('form_{{ $produto->id }}').submit()">
+                                            <img alt='Excluir' src='{{asset('/img/icon_delete.png')}}'/>
+                                        </a>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -112,5 +112,9 @@ Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(funct
 
     // O método resource() do Laravel cria automaticamente 
     // as rotas associadas a cada action da Controller ProdutoController
+    // Produto
     Route::resource('produto', 'ProdutoController');
+
+    // Produto Detalhes
+    Route::resource('produto-detalhe', 'ProdutoDetalheController');
 });
