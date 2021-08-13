@@ -20,7 +20,7 @@
     
         <div class="informacao-pagina">
             <div style='width: 90%; margin-left: auto; margin-right: auto;'>
-                <table>
+                <table border="1" width="100%">
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -40,6 +40,27 @@
                                 <td>{{ $fornecedor->email }}</td>
                                 <td><a href='{{ route('app.fornecedor.editar', $fornecedor->id) }}'><img alt='Editar' src='{{asset('/img/icon_edit.png')}}'/></a></td>
                                 <td><a href='{{ route('app.fornecedor.excluir', $fornecedor->id) }}'><img alt='Excluir' src='{{asset('/img/icon_delete.png')}}'/></a></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <p>Lista de Produtos</p>
+                                    <table border="1" style="margin: 20px">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nome</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($fornecedor->produtos as $key => $produto)
+                                                <tr>
+                                                    <td>{{ $produto->id }}</td>
+                                                    <td>{{ $produto->nome }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

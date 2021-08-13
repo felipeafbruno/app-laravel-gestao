@@ -18,7 +18,7 @@
     
         <div class="informacao-pagina">
             <div style='width: 30%; margin-left: auto; margin-right: auto;'>
-                <table>
+                <table border="1" width="100%">
                     <tr>
                         <td>Id:</td>
                         <td>{{ $produto->id }}</td>

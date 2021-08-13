@@ -19,5 +19,7 @@ class Fornecedor extends Model
     // Para isso fillable determina quais atributos da model desejam ser feitos o Mass Assigment
     protected $fillable = ['nome', 'site', 'uf', 'email'];
 
-
+    public function produtos() {
+        return $this->hasMany('App\Produto');
+    }
 }
